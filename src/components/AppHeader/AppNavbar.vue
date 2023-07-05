@@ -7,9 +7,11 @@ export default {
 </script>
 
 <template>
-  <ul>
-    <li v-for="item in list"><a href="#">{{ item }}</a></li>
-  </ul>
+  <nav>
+    <ul>
+      <li v-for="item in list"><a href="#">{{ item }}</a></li>
+    </ul>
+  </nav>
 </template>
 
 <style scoped>

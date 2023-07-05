@@ -1,6 +1,6 @@
 <script>
 // Import store
-import { store } from '../../assets/data/store'
+import { store } from '@/assets/data/store'
 
 // Import APP
 import MovieApp from './MovieApp.vue'

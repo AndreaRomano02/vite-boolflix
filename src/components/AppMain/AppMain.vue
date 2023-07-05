@@ -3,16 +3,23 @@
 import { store } from '@/assets/data/store'
 
 // Import APP
-import MovieApp from './MovieApp.vue'
+import MoviesApp from './MoviesApp.vue'
+import SeriesApp from './SeriesApp.vue'
 
 export default {
-  components: { MovieApp },
+  components: { MoviesApp, SeriesApp },
   data: () => store,
 }
 </script>
 
 <template>
-  <MovieApp v-for="movie in movies" :key="movie.id" :movie="movie" />
+  <!-- Films -->
+  <h1>FILMS</h1>
+  <MoviesApp v-for="movie in movies" :key="movie.id" :movie="movie" />
+
+  <!-- Series -->
+  <h1>SERIES</h1>
+  <SeriesApp v-for="serie in series" :key="serie.id" :serie="serie" />
 </template>
 
 <style scoped></style>

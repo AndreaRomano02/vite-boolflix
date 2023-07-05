@@ -35,7 +35,19 @@ export default {
 
           store.movies = apiMovies.map(movie => {
             const { id, original_language, original_title, title, vote_average } = movie;
-            return { id, lang: original_language, original_title, title, vote: vote_average }
+            return { id, lang: original_language, mainTitle: original_title, title, vote: vote_average }
+          });
+
+        })
+        .catch(err => console.error(err))
+
+      axios.get(this.baseUri + `/search/tv?query=${this.store.textSearched}`, axiosParams)
+        .then(res => {
+          const apiSeries = res.data.results;
+
+          store.series = apiSeries.map(seire => {
+            const { id, original_language, original_name, name, vote_average } = seire;
+            return { id, lang: original_language, mainTitle: original_name, title: name, vote: vote_average }
           });
 
         })

@@ -24,7 +24,7 @@ export default {
     <div class="container h-100">
       <div class="row align-items-center h-100">
         <div class="col-8 d-flex align-items-center">
-          <img src="@/assets/img/logo.png" alt="Logo">
+          <a href="#"><img src="@/assets/img/logo.png" alt="Logo"></a>
           <AppNavbar :list="navbarList" />
         </div>
         <div class="col-4">

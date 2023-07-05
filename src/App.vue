@@ -1,5 +1,9 @@
 <script>
+// Import API key
 import { api_key } from './assets/data/api_key'
+
+// Import axios Library
+import axios from 'axios'
 
 export default {
   data() {

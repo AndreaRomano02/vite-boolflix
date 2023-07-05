@@ -8,10 +8,15 @@ import axios from 'axios'
 const axiosParams = {
   params: {
     api_key,
+    language: 'it-IT',
   }
 };
 
+// Import APP
+import AppSearch from './components/AppSearch.vue'
+
 export default {
+  components: { AppSearch, },
   data() {
     return {
       api_key,
@@ -19,22 +24,19 @@ export default {
     }
   },
   methods: {
-    fetchMovies(uri = this.baseUri) {
-      axios.get(uri + `/search/movie`, axiosParams)
+    fetchMovies(textSearched) {
+      axios.get(this.baseUri + `/search/movie?query=${textSearched}`, axiosParams)
         .then(res => {
-          console.log(res.data)
+          console.log(res.data.results)
 
         })
     },
-  },
-  created() {
-    this.fetchMovies();
   },
 }
 </script>
 
 <template>
-  <h1>{{ api_key }}</h1>
+  <AppSearch @search="fetchMovies" />
 </template>
 
 <style></style>

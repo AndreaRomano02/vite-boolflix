@@ -38,7 +38,7 @@ export default {
 <style scoped>
 header {
   height: 100px;
-  background-color: rgb(20, 20, 20);
+  background-color: rgb(10, 10, 10);
 }
 
 img {

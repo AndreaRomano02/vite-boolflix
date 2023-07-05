@@ -55,6 +55,7 @@ p img {
 
 li {
   position: relative;
+  height: 100%;
 
   &:hover .overlay {
     display: flex;
@@ -64,7 +65,7 @@ li {
 .overlay {
   text-align: center;
   background-color: rgba(30, 30, 30, 0.95);
-  width: 96%;
+  width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
@@ -73,9 +74,18 @@ li {
   @include flex-center;
 
   display: none;
+
 }
 
 .poster {
+  height: 100%;
+
+  img {
+    width: 100%;
+
+    height: 100%;
+  }
+
   p {
     @include flex-center;
     height: 513px;

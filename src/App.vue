@@ -16,10 +16,11 @@ const axiosParams = {
 };
 
 // Import APP
-import AppSearch from './components/AppSearch.vue'
+import AppHeader from './components/AppHeader/AppHeader.vue'
+import AppMain from './components/AppMain/AppMain.vue'
 
 export default {
-  components: { AppSearch, },
+  components: { AppMain, AppHeader },
   data() {
     return {
       store,
@@ -27,10 +28,15 @@ export default {
     }
   },
   methods: {
-    fetchMovies(textSearched) {
-      axios.get(this.baseUri + `/search/movie?query=${textSearched}`, axiosParams)
+    fetchMovies() {
+      axios.get(this.baseUri + `/search/movie?query=${this.store.textSearched}`, axiosParams)
         .then(res => {
-          this.store.movies.push(res.data.results)
+          const apiMovies = res.data.results;
+
+          store.movies = apiMovies.map(movie => {
+            const { original_language, original_title, title, popularity } = movie;
+            return { lang: original_language, original_title, title, popularity }
+          });
 
         })
         .catch(err => console.error(err))
@@ -40,7 +46,8 @@ export default {
 </script>
 
 <template>
-  <AppSearch @search="fetchMovies" />
+  <AppHeader @search="fetchMovies" />
+  <AppMain />
 </template>
 
 <style></style>

@@ -12,7 +12,11 @@ export default {
   computed: {
     isThere() {
       return this.flags.includes(this.movie.lang);
-    }
+    },
+    score() {
+      let score = Math.ceil(this.movie.vote / 2)
+      return score
+    },
   }
 }
 </script>
@@ -25,7 +29,7 @@ export default {
       <p>Original Name: {{ movie.mainTitle }}</p>
       <p v-if="isThere">Language: <img :src="`./src/assets/img/flags/${movie.lang}.png`" :alt="movie.lang"></p>
       <p v-else>Language: {{ movie.lang }}</p>
-      <p>Score: {{ Math.ceil(movie.vote) }}</p>
+      <p>Score: {{ score }}</p>
     </li>
   </ul>
 </template>

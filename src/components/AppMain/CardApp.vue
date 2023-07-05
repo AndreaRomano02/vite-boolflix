@@ -26,7 +26,8 @@ export default {
 <template>
   <ul>
     <li>
-      <img :src="uriImg + show.poster_path" :alt="show.title">
+      <img v-if="show.poster_path" :src="uriImg + show.poster_path" :alt="show.title">
+      <p v-else>No Poster</p>
       <p>Title: {{ show.title }}</p>
       <p>Original Name: {{ show.mainTitle }}</p>
       <p v-if="isThere">Language: <img :src="`./src/assets/img/flags/${show.lang}.png`" :alt="show.lang"></p>

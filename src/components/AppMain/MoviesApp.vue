@@ -20,7 +20,7 @@ export default {
   <ul>
     <li>
       <p>Title: {{ movie.title }}</p>
-      <p>Original Name: {{ movie.original_title }}</p>
+      <p>Original Name: {{ movie.mainTitle }}</p>
       <p v-if="isThere">Language: <img :src="`./src/assets/img/flags/${movie.lang}.png`" :alt="movie.lang"></p>
       <p v-else>Language: {{ movie.lang }}</p>
       <p>Score: {{ Math.ceil(movie.vote) }}</p>

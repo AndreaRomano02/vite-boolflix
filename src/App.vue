@@ -34,8 +34,8 @@ export default {
           const apiMovies = res.data.results;
 
           store.movies = apiMovies.map(movie => {
-            const { id, original_language, original_title, title, vote_average } = movie;
-            return { id, lang: original_language, mainTitle: original_title, title, vote: vote_average }
+            const { id, original_language, original_title, title, vote_average, poster_path } = movie;
+            return { id, lang: original_language, mainTitle: original_title, title, vote: vote_average, poster_path }
           });
 
         })
@@ -46,8 +46,8 @@ export default {
           const apiSeries = res.data.results;
 
           store.series = apiSeries.map(seire => {
-            const { id, original_language, original_name, name, vote_average } = seire;
-            return { id, lang: original_language, mainTitle: original_name, title: name, vote: vote_average }
+            const { id, original_language, original_name, name, vote_average, poster_path } = seire;
+            return { id, lang: original_language, mainTitle: original_name, title: name, vote: vote_average, poster_path }
           });
 
         })

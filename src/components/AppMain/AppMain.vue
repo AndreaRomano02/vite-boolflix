@@ -15,11 +15,11 @@ export default {
 <template>
   <!-- Films -->
   <h1>FILMS</h1>
-  <MoviesApp v-for="movie in movies" :key="movie.id" :movie="movie" />
+  <MoviesApp v-for="movie in movies" :key="movie.id" :movie="movie" :uriImg="uriImg" />
 
   <!-- Series -->
   <h1>SERIES</h1>
-  <SeriesApp v-for="serie in series" :key="serie.id" :serie="serie" />
+  <SeriesApp v-for="serie in series" :key="serie.id" :serie="serie" :uriImg="uriImg" />
 </template>
 
 <style scoped></style>

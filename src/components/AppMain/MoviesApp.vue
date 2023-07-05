@@ -1,7 +1,8 @@
 <script>
 export default {
   props: {
-    movie: Object
+    movie: Object,
+    uriImg: String
   },
   data() {
     return {
@@ -19,6 +20,7 @@ export default {
 <template>
   <ul>
     <li>
+      <img :src="uriImg + movie.poster_path" :alt="movie.title">
       <p>Title: {{ movie.title }}</p>
       <p>Original Name: {{ movie.mainTitle }}</p>
       <p v-if="isThere">Language: <img :src="`./src/assets/img/flags/${movie.lang}.png`" :alt="movie.lang"></p>
@@ -29,7 +31,7 @@ export default {
 </template>
 
 <style scoped>
-img {
+p img {
   height: 30px;
 }
 </style>

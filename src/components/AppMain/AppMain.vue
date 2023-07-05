@@ -3,11 +3,10 @@
 import { store } from '@/assets/data/store'
 
 // Import APP
-import MoviesApp from './MoviesApp.vue'
-import SeriesApp from './SeriesApp.vue'
+import CardApp from './CardApp.vue'
 
 export default {
-  components: { MoviesApp, SeriesApp },
+  components: { CardApp },
   data: () => store,
 }
 </script>
@@ -15,11 +14,11 @@ export default {
 <template>
   <!-- Films -->
   <h1>FILMS</h1>
-  <MoviesApp v-for="movie in movies" :key="movie.id" :movie="movie" :uriImg="uriImg" />
+  <CardApp v-for="movie in movies" :key="movie.id" :show="movie" :uriImg="uriImg" />
 
   <!-- Series -->
   <h1>SERIES</h1>
-  <SeriesApp v-for="serie in series" :key="serie.id" :serie="serie" :uriImg="uriImg" />
+  <CardApp v-for="serie in series" :key="serie.id" :show="serie" :uriImg="uriImg" />
 </template>
 
 <style scoped></style>

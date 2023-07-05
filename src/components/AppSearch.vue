@@ -10,8 +10,8 @@ export default {
 </script>
 
 <template>
-  <div class="d-flex m-3">
-    <input v-model="textSearched" @keyup.enter="$emit('search', textSearched)" type=" text" class="form-control w-50"
+  <div class="d-flex">
+    <input v-model="textSearched" @keyup.enter="$emit('search', textSearched)" type=" text" class="form-control"
       placeholder="Cerca...">
     <button class="btn btn-secondary" @click="$emit('search', textSearched)">Cerca</button>
   </div>

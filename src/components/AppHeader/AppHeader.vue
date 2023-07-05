@@ -4,9 +4,10 @@ import { store } from '../../assets/data/store'
 
 // Import App
 import AppSearch from '../AppSearch.vue'
+import AppNavbar from './AppNavbar.vue'
 
 export default {
-  components: { AppSearch },
+  components: { AppSearch, AppNavbar },
   data: () => store,
   methods: {
     onSearch(textSearched) {
@@ -19,7 +20,28 @@ export default {
 </script>
 
 <template>
-  <AppSearch @search="onSearch" />
+  <header>
+    <div class="container h-100">
+      <div class="row align-items-center h-100">
+        <div class="col-8 d-flex align-items-center">
+          <img src="@/assets/img/logo.png" alt="Logo">
+          <AppNavbar :list="navbarList" />
+        </div>
+        <div class="col-4">
+          <AppSearch @search="onSearch" />
+        </div>
+      </div>
+    </div>
+  </header>
 </template>
 
-<style scoped></style>
+<style scoped>
+header {
+  height: 100px;
+  background-color: rgb(20, 20, 20);
+}
+
+img {
+  height: 50px;
+}
+</style>

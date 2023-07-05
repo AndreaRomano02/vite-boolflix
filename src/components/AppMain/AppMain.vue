@@ -12,13 +12,15 @@ export default {
 </script>
 
 <template>
-  <!-- Films -->
-  <h1>FILMS</h1>
-  <CardApp v-for="movie in movies" :key="movie.id" :show="movie" :uriImg="uriImg" />
+  <main>
+    <!-- Films -->
+    <h1>FILMS</h1>
+    <CardApp v-for="movie in movies" :key="movie.id" :show="movie" :uriImg="uriImg" />
 
-  <!-- Series -->
-  <h1>SERIES</h1>
-  <CardApp v-for="serie in series" :key="serie.id" :show="serie" :uriImg="uriImg" />
+    <!-- Series -->
+    <h1>SERIES</h1>
+    <CardApp v-for="serie in series" :key="serie.id" :show="serie" :uriImg="uriImg" />
+  </main>
 </template>
 
 <style scoped></style>

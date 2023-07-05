@@ -34,8 +34,8 @@ export default {
           const apiMovies = res.data.results;
 
           store.movies = apiMovies.map(movie => {
-            const { original_language, original_title, title, popularity } = movie;
-            return { lang: original_language, original_title, title, popularity }
+            const { id, original_language, original_title, title, vote_average } = movie;
+            return { id, lang: original_language, original_title, title, vote: vote_average }
           });
 
         })

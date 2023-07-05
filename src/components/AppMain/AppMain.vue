@@ -12,7 +12,7 @@ export default {
 </script>
 
 <template>
-  <MovieApp :movies="movies" />
+  <MovieApp v-for="movie in movies" :key="movie.id" :movie="movie" />
 </template>
 
 <style scoped></style>

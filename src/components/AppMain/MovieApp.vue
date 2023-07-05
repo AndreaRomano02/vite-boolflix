@@ -1,18 +1,29 @@
 <script>
 export default {
   props: {
-    movies: Array
+    movie: Object
   },
+  data() {
+    return {
+      flags: ['de', 'en', 'es', 'fi', 'fr', 'it', 'ja', 'ko', 'pt', 'tr'],
+    }
+  },
+  computed: {
+    isThere() {
+      return this.flags.includes(this.movie.lang);
+    }
+  }
 }
 </script>
 
 <template>
   <ul>
-    <li v-for="movie in movies">
+    <li>
       <p>Title: {{ movie.title }}</p>
       <p>Original Name: {{ movie.original_title }}</p>
-      <p>Language: <img :src="`./src/assets/img/${movie.lang}.png`" :alt="movie.lang"></p>
-      <p>Score: {{ movie.popularity }}</p>
+      <p v-if="isThere">Language: <img :src="`./src/assets/img/flags/${movie.lang}.png`" :alt="movie.lang"></p>
+      <p v-else>Language: {{ movie.lang }}</p>
+      <p>Score: {{ Math.ceil(movie.vote) }}</p>
     </li>
   </ul>
 </template>

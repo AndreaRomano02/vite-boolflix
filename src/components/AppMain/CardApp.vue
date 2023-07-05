@@ -14,9 +14,11 @@ export default {
       return this.flags.includes(this.show.lang);
     },
     score() {
-      let score = Math.ceil(this.show.vote / 2)
-      return score
+      return parseInt(Math.ceil(this.show.vote / 2));
     },
+    lessToScore() {
+      return 5 - this.score
+    }
   }
 }
 </script>
@@ -29,7 +31,10 @@ export default {
       <p>Original Name: {{ show.mainTitle }}</p>
       <p v-if="isThere">Language: <img :src="`./src/assets/img/flags/${show.lang}.png`" :alt="show.lang"></p>
       <p v-else>Language: {{ show.lang }}</p>
-      <p>Score: {{ score }}</p>
+      <p>Score:
+        <font-awesome-icon :icon="['fas', 'star']" v-for="star in score" />
+        <font-awesome-icon :icon="['far', 'star']" v-for="star in lessToScore" />
+      </p>
     </li>
   </ul>
 </template>

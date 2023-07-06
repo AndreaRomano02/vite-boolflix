@@ -10,6 +10,11 @@ export default {
   components: { AppSearch, AppNavbar },
   data: () => store,
   methods: {
+    goToHomePage() {
+      this.movies = [];
+      this.series = [];
+      this.textSearched = '';
+    },
     onSearch(textSearched) {
       this.textSearched = textSearched;
       this.$emit('search')
@@ -24,7 +29,7 @@ export default {
     <div class="container h-100">
       <div class="row align-items-center h-100">
         <div class="col-8 d-flex align-items-center">
-          <a href="#"><img src="@/assets/img/logo.png" alt="Logo"></a>
+          <a title="Home Page" href="#" @click="goToHomePage"><img src="@/assets/img/logo.png" alt="Logo"></a>
           <AppNavbar :list="navbarList" />
         </div>
         <div class="col-4">

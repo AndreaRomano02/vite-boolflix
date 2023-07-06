@@ -9,20 +9,29 @@ export default {
       flags: ['de', 'en', 'es', 'fi', 'fr', 'it', 'ja', 'ko', 'pt', 'tr'],
     }
   },
+  methods: {
+    star(i) {
+      if (i <= this.score) return 'fas'
+      else return 'far'
+    }
+  },
   computed: {
+    title() {
+      return this.show.title || this.show.name;
+    },
+    originalTitle() {
+      return this.show.original_title || this.show.original_name;
+    },
     isThere() {
       return this.flags.includes(this.show.lang);
     },
     score() {
-      return parseInt(Math.ceil(this.show.vote / 2));
-    },
-    lessToScore() {
-      return 5 - this.score
+      return Math.ceil(this.show.vote_average / 2);
     },
     urlSrc() {
       const url = new URL(`../../assets/img/flags/${this.show.lang}.png`, import.meta.url);
       return url.href
-    }
+    },
   }
 }
 </script>
@@ -31,18 +40,17 @@ export default {
   <ul>
     <li>
       <div class="poster">
-        <img v-if="show.poster_path" :src="uriImg + show.poster_path" :alt="show.title">
+        <img v-if="show.poster_path" :src="uriImg + show.poster_path" :alt="title">
         <p v-else>No Poster</p>
       </div>
       <div class="overlay">
         <div class="description">
-          <p>Title: {{ show.title }}</p>
-          <p>Original Name: {{ show.mainTitle }}</p>
+          <p>Title: {{ title }}</p>
+          <p>Original Name: {{ originalTitle }}</p>
           <p v-if="isThere"><img :src="urlSrc" :alt="show.lang"></p>
           <p v-else>Language: {{ show.lang }}</p>
           <p>Score:
-            <font-awesome-icon :icon="['fas', 'star']" v-for="star in score" />
-            <font-awesome-icon :icon="['far', 'star']" v-for="star in lessToScore" />
+            <font-awesome-icon :icon="[`${star(i)}`, 'star']" v-for="i in 5" :key="show.id" />
           </p>
         </div>
       </div>

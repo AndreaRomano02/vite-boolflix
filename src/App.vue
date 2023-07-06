@@ -23,33 +23,24 @@ export default {
   components: { AppMain, AppHeader },
   data() {
     return {
-      store,
       baseUri,
     }
   },
   methods: {
-    fetchMovies() {
-      axios.get(this.baseUri + `/search/movie?query=${this.store.textSearched}`, axiosParams)
+    onSearch() {
+      if (!store.textSearched) {
+        store.series = [];
+        store.movies = [];
+        return;
+      }
+
+      this.fetchApi('search/movie', 'movies');
+      this.fetchApi('search/tv', 'series');
+    },
+    fetchApi(endpoint, target) {
+      axios.get(`${this.baseUri}/${endpoint}?query=${store.textSearched}`, axiosParams)
         .then(res => {
-          const apiMovies = res.data.results;
-
-          store.movies = apiMovies.map(movie => {
-            const { id, original_language, original_title, title, vote_average, poster_path } = movie;
-            return { id, lang: original_language, mainTitle: original_title, title, vote: vote_average, poster_path }
-          });
-
-        })
-        .catch(err => console.error(err))
-
-      axios.get(this.baseUri + `/search/tv?query=${this.store.textSearched}`, axiosParams)
-        .then(res => {
-          const apiSeries = res.data.results;
-
-          store.series = apiSeries.map(seire => {
-            const { id, original_language, original_name, name, vote_average, poster_path } = seire;
-            return { id, lang: original_language, mainTitle: original_name, title: name, vote: vote_average, poster_path }
-          });
-
+          store[target] = res.data.results
         })
         .catch(err => console.error(err))
     },
@@ -58,7 +49,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @search="fetchMovies" />
+  <AppHeader @search="onSearch" />
   <AppMain />
 </template>
 

@@ -23,13 +23,13 @@ export default {
       return this.show.original_title || this.show.original_name;
     },
     isThere() {
-      return this.flags.includes(this.show.lang);
+      return this.flags.includes(this.show.original_language);
     },
     score() {
       return Math.ceil(this.show.vote_average / 2);
     },
     urlSrc() {
-      const url = new URL(`../../assets/img/flags/${this.show.lang}.png`, import.meta.url);
+      const url = new URL(`../../assets/img/flags/${this.show.original_language}.png`, import.meta.url);
       return url.href
     },
   }
@@ -47,8 +47,8 @@ export default {
         <div class="description">
           <p>Title: {{ title }}</p>
           <p>Original Name: {{ originalTitle }}</p>
-          <p v-if="isThere"><img :src="urlSrc" :alt="show.lang"></p>
-          <p v-else>Language: {{ show.lang }}</p>
+          <p v-if="isThere"><img :src="urlSrc" :alt="show.original_language"></p>
+          <p v-else>Language: {{ show.original_language }}</p>
           <p>Score:
             <font-awesome-icon :icon="[`${star(i)}`, 'star']" v-for="i in 5" :key="show.id" />
           </p>

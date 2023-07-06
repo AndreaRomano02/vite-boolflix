@@ -13,7 +13,7 @@ export default {
 
 <template>
   <main>
-    <div v-if="!movies.length || !series.length" class="main-start">
+    <div v-if="!movies.length && !series.length" class="main-start">
       <h1>CERCA UN FILM O UNA SERIE TV!!!</h1>
     </div>
     <div v-else class="main-content py-5">

@@ -54,12 +54,10 @@ export default {
       axios.get(`${this.baseUri}/${endpoint}`, this.axiosParams)
         .then((res) => {
           store[target] = [];
+          store[cast] = [];
           res.data.results.forEach((object) => {
-            axios
-              .get(
-                `${this.baseUri}/${castEndpoint}/${object.id}/credits`,
-                this.axiosParams
-              )
+            axios.get(
+              `${this.baseUri}/${castEndpoint}/${object.id}/credits`, this.axiosParams)
               .then((res) => {
                 store[cast].push(res.data.cast);
                 store[target].push(object);

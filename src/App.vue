@@ -17,6 +17,7 @@ export default {
   components: { AppMain, AppHeader },
   data() {
     return {
+      store,
       baseUri,
       params
     }
@@ -51,17 +52,21 @@ export default {
       if (target == 'movies') castEndpoint = 'movie'
 
       axios.get(`${this.baseUri}/${endpoint}`, this.axiosParams)
-        .then(res => {
-
-          store[target] = res.data.results;
-          store[target].forEach(object => {
-            axios.get(`${this.baseUri}/${castEndpoint}/${object.id}/credits`, this.axiosParams)
-              .then(res => {
-                store[cast].push(res.data.cast)
-              })
+        .then((res) => {
+          store[target] = [];
+          res.data.results.forEach((object) => {
+            axios
+              .get(
+                `${this.baseUri}/${castEndpoint}/${object.id}/credits`,
+                this.axiosParams
+              )
+              .then((res) => {
+                store[cast].push(res.data.cast);
+                store[target].push(object);
+              });
           });
         })
-        .catch(err => console.error(err))
+        .catch((err) => console.error(err));
     },
   },
 }

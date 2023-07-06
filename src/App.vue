@@ -3,8 +3,8 @@
 import { store } from './assets/data/store'
 
 // Import API key
-import { api_key } from './assets/data/api_key'
 import { baseUri } from './assets/data/data'
+import { params } from './assets/data/data'
 
 // Import axios Library
 import axios from 'axios'
@@ -18,14 +18,16 @@ export default {
   data() {
     return {
       baseUri,
+      params
     }
   },
   computed: {
     axiosParams() {
+      const { api_key, language } = params;
       return {
         params: {
+          language,
           api_key,
-          language: 'it-IT',
           query: store.textSearched,
         }
       }

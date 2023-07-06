@@ -54,6 +54,10 @@ export default {
           <p>Score:
             <font-awesome-icon :icon="[`${star(i)}`, 'star']" v-for="i in 5" :key="show.id" />
           </p>
+          <p>Description :
+          <p>{{ show.overview }}</p>
+
+          </p>
         </div>
       </div>
     </li>

@@ -18,6 +18,10 @@ export default {
     },
     lessToScore() {
       return 5 - this.score
+    },
+    urlSrc() {
+      const url = new URL(`../../assets/img/flags/${this.show.lang}.png`, import.meta.url);
+      return url.href
     }
   }
 }
@@ -34,7 +38,7 @@ export default {
         <div class="description">
           <p>Title: {{ show.title }}</p>
           <p>Original Name: {{ show.mainTitle }}</p>
-          <p v-if="isThere"><img :src="`./src/assets/img/flags/${show.lang}.png`" :alt="show.lang"></p>
+          <p v-if="isThere"><img :src="urlSrc" :alt="show.lang"></p>
           <p v-else>Language: {{ show.lang }}</p>
           <p>Score:
             <font-awesome-icon :icon="['fas', 'star']" v-for="star in score" />

@@ -8,12 +8,6 @@ import { baseUri } from './assets/data/data'
 
 // Import axios Library
 import axios from 'axios'
-const axiosParams = {
-  params: {
-    api_key,
-    language: 'it-IT',
-  }
-};
 
 // Import APP
 import AppHeader from './components/AppHeader/AppHeader.vue'
@@ -25,6 +19,17 @@ export default {
     return {
       baseUri,
     }
+  },
+  computed: {
+    axiosParams() {
+      return {
+        params: {
+          api_key,
+          language: 'it-IT',
+          query: store.textSearched,
+        }
+      }
+    },
   },
   methods: {
     onSearch() {
@@ -38,7 +43,7 @@ export default {
       this.fetchApi('search/tv', 'series');
     },
     fetchApi(endpoint, target) {
-      axios.get(`${this.baseUri}/${endpoint}?query=${store.textSearched}`, axiosParams)
+      axios.get(`${this.baseUri}/${endpoint}`, this.axiosParams)
         .then(res => {
           store[target] = res.data.results
         })

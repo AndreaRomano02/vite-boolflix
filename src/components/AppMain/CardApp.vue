@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     star(i) {
-      if (i <= this.score) return 'fas'
+      if (i <= this.score && this.score > 0) return 'fas'
       else return 'far'
     }
   },

@@ -4,6 +4,8 @@ export const store = reactive({
   // Movies Array
   movies: [],
   series: [],
+  castMovies: [],
+  castSeries: [],
 
   // Search Text by AppSearch
   textSearched: '',

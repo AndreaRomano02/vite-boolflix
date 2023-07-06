@@ -41,13 +41,25 @@ export default {
         return;
       }
 
-      this.fetchApi('search/movie', 'movies');
-      this.fetchApi('search/tv', 'series');
+      this.fetchApi('search/movie', 'movies', 'castMovies');
+      this.fetchApi('search/tv', 'series', 'castSeries');
     },
-    fetchApi(endpoint, target) {
+    fetchApi(endpoint, target, cast) {
+
+      // Determina l'endpoint per i cast
+      let castEndpoint = 'tv';
+      if (target == 'movies') castEndpoint = 'movie'
+
       axios.get(`${this.baseUri}/${endpoint}`, this.axiosParams)
         .then(res => {
-          store[target] = res.data.results
+
+          store[target] = res.data.results;
+          store[target].forEach(object => {
+            axios.get(`${this.baseUri}/${castEndpoint}/${object.id}/credits`, this.axiosParams)
+              .then(res => {
+                store[cast].push(res.data.cast)
+              })
+          });
         })
         .catch(err => console.error(err))
     },

@@ -36,11 +36,7 @@ export default {
       return url.href
     },
     fiveCredits() {
-      let fiveCredits = [];
-      for (let i = 0; i < 5; i++) {
-        if (this.credits[i]) fiveCredits.push(this.credits[i]);
-      }
-      return fiveCredits;
+      return this.credits.splice(0, 5)
     },
   }
 }
@@ -64,7 +60,7 @@ export default {
           </p>
           <div>
             <h5>Main Actors: </h5>
-            <span v-for="credit in fiveCredits">{{ credit.name }}, </span>
+            <span v-for="credit in fiveCredits" :key="credit.id">{{ credit.original_name }}, </span>
           </div>
           <div>
             <h5>Description: </h5>

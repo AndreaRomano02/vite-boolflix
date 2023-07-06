@@ -4,6 +4,7 @@ import { uriImg } from '../../assets/data/data'
 export default {
   props: {
     show: Object,
+    credits: Array,
   },
   data() {
     return {
@@ -34,6 +35,13 @@ export default {
       const url = new URL(`../../assets/img/flags/${this.show.original_language}.png`, import.meta.url);
       return url.href
     },
+    fiveCredits() {
+      let fiveCredits = [];
+      for (let i = 0; i < 5; i++) {
+        if (this.credits[i]) fiveCredits.push(this.credits[i]);
+      }
+      return fiveCredits;
+    },
   }
 }
 </script>
@@ -54,10 +62,14 @@ export default {
           <p>Score:
             <font-awesome-icon :icon="[`${star(i)}`, 'star']" v-for="i in 5" :key="show.id" />
           </p>
-          <p>Description :
-          <p>{{ show.overview }}</p>
-
-          </p>
+          <div>
+            <h5>Main Actors: </h5>
+            <span v-for="credit in fiveCredits">{{ credit.name }}, </span>
+          </div>
+          <div>
+            <h5>Description: </h5>
+            <p>{{ show.overview }}</p>
+          </div>
         </div>
       </div>
     </li>

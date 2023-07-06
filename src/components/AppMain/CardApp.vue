@@ -1,12 +1,14 @@
 <script>
+import { uriImg } from '../../assets/data/data'
+
 export default {
   props: {
     show: Object,
-    uriImg: String
   },
   data() {
     return {
       flags: ['de', 'en', 'es', 'fi', 'fr', 'it', 'ja', 'ko', 'pt', 'tr'],
+      uriImg,
     }
   },
   methods: {
@@ -77,6 +79,7 @@ li {
 .overlay {
   text-align: center;
   background-color: rgba(30, 30, 30, 0.95);
+  overflow: auto;
   width: 100%;
   height: 100%;
   position: absolute;

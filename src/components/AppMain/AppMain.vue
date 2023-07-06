@@ -21,13 +21,13 @@ export default {
         <!-- Films -->
         <h1>FILMS</h1>
         <div class="row row-cols-4 g-4">
-          <CardApp class="col" v-for="movie in movies" :key="movie.id" :show="movie" :uriImg="uriImg" />
+          <CardApp class="col" v-for="movie in movies" :key="movie.id" :show="movie" />
         </div>
 
         <!-- Series -->
         <h1>SERIES</h1>
         <div class="row row-cols-4 g-4">
-          <CardApp class="col" v-for="serie in series" :key="serie.id" :show="serie" :uriImg="uriImg" />
+          <CardApp class="col" v-for="serie in series" :key="serie.id" :show="serie" />
         </div>
       </div>
     </div>

@@ -10,13 +10,12 @@ export default {
 </script>
 
 <template>
-  <div class="d-flex">
-    <input v-model="textSearched" @keyup.enter="$emit('search', textSearched)" type=" text" class="form-control"
-      placeholder="Cerca...">
-    <button class="btn btn-secondary" @click="$emit('search', textSearched)">
+  <form class="d-flex" @submit.prevent="$emit('search', textSearched)">
+    <input v-model="textSearched" type=" text" class="form-control" placeholder="Cerca...">
+    <button class="btn btn-secondary">
       <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
     </button>
-  </div>
+  </form>
 </template>
 
 <style scoped></style>
